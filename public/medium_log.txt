@@ -1,0 +1,77 @@
+:: Ansys, 2012 - 2014.  All data confidential ::
+
+COMMAND LINE : ./runqa --build Release --force --report_time --central_db_dir /projs00/tomahawk/build/linux_x86_64_rhel6/master/2016.05.02-00.08.56 -j 4
+EXECUTABLE   : /projs00/tomahawk/build/linux_x86_64_rhel6/master/2016.05.02-00.08.56/Release/thk/dev/build/linux_x86_64_rhel6/Release/app/gps/gps
+HOST         : sjord384-10
+DISPLAY      : sjothqa32-1:87
+PID          : 66625
+START TIME   : 05/02/16 03:58:26
+NUM TESTS    : 21
+
+Mon May 02 2016 03:58:28 - TESTCASE [sjord384-10] : file:///projs00/tomahawk/build/linux_x86_64_rhel6/master/2016.05.02-00.08.56/Release/thk/qa/medium/current_test/current_test.snap.pyt
+Mon May 02 2016 03:58:28 - TESTCASE [sjord384-10] : file:///projs00/tomahawk/build/linux_x86_64_rhel6/master/2016.05.02-00.08.56/Release/thk/qa/medium/power_gate/power_gate_dist.pyt
+Mon May 02 2016 03:58:28 - TESTCASE [sjord384-10] : file:///projs00/tomahawk/build/linux_x86_64_rhel6/master/2016.05.02-00.08.56/Release/thk/qa/medium/current_test/current_test.nosnap.pyt
+Mon May 02 2016 03:58:28 - TESTCASE [sjord384-10] : file:///projs00/tomahawk/build/linux_x86_64_rhel6/master/2016.05.02-00.08.56/Release/thk/qa/medium/demo/test_inv_chain.pyt
+Mon May 02 2016 04:00:01 - TESTCASE [sjord384-10] : file:///projs00/tomahawk/build/linux_x86_64_rhel6/master/2016.05.02-00.08.56/Release/thk/qa/medium/power_gate/power_gate_mini.pyt
+Mon May 02 2016 04:00:17 - TESTCASE [sjord384-10] : file:///projs00/tomahawk/build/linux_x86_64_rhel6/master/2016.05.02-00.08.56/Release/thk/qa/medium/power_gate/power_gate_sub.pyt
+Mon May 02 2016 04:00:19 - TESTCASE [sjord384-10] : file:///projs00/tomahawk/build/linux_x86_64_rhel6/master/2016.05.02-00.08.56/Release/thk/qa/medium/power_gate/power_gate_super.pyt
+Mon May 02 2016 04:00:26 - TESTCASE [sjord384-10] : file:///projs00/tomahawk/build/linux_x86_64_rhel6/master/2016.05.02-00.08.56/Release/thk/qa/medium/power_gate/power_gate_vert_dist.pyt
+Mon May 02 2016 04:01:05 - TESTCASE [sjord384-10] : file:///projs00/tomahawk/build/linux_x86_64_rhel6/master/2016.05.02-00.08.56/Release/thk/qa/medium/power_gate/ramp_up_multi.pyt
+Mon May 02 2016 04:01:18 - TESTCASE [sjord384-10] : file:///projs00/tomahawk/build/linux_x86_64_rhel6/master/2016.05.02-00.08.56/Release/thk/qa/medium/simulation/crooked.pyt
+Mon May 02 2016 04:01:49 - TESTCASE [sjord384-10] : file:///projs00/tomahawk/build/linux_x86_64_rhel6/master/2016.05.02-00.08.56/Release/thk/qa/medium/simulation/legacy_scenario1.pyt
+Mon May 02 2016 04:02:09 - TESTCASE [sjord384-10] : file:///projs00/tomahawk/build/linux_x86_64_rhel6/master/2016.05.02-00.08.56/Release/thk/qa/medium/simulation/mexican_wave_avg.pyt
+Mon May 02 2016 04:02:15 - TESTCASE [sjord384-10] : file:///projs00/tomahawk/build/linux_x86_64_rhel6/master/2016.05.02-00.08.56/Release/thk/qa/medium/simulation/mexican_wave_inductive.pyt
+Mon May 02 2016 04:02:18 - TESTCASE [sjord384-10] : file:///projs00/tomahawk/build/linux_x86_64_rhel6/master/2016.05.02-00.08.56/Release/thk/qa/medium/simulation/mexican_wave_p2.pyt
+Mon May 02 2016 04:03:24 - TESTCASE [sjord384-10] : file:///projs00/tomahawk/build/linux_x86_64_rhel6/master/2016.05.02-00.08.56/Release/thk/qa/medium/simulation/mx4.pyt
+Mon May 02 2016 04:03:28 - TESTCASE [sjord384-10] : file:///projs00/tomahawk/build/linux_x86_64_rhel6/master/2016.05.02-00.08.56/Release/thk/qa/medium/simulation/partition_test.pyt
+Mon May 02 2016 04:09:53 - TESTCASE [sjord384-10] : file:///projs00/tomahawk/build/linux_x86_64_rhel6/master/2016.05.02-00.08.56/Release/thk/qa/medium/simulation/reduction_test.pyt
+Mon May 02 2016 04:11:38 - TESTCASE [sjord384-10] : file:///projs00/tomahawk/build/linux_x86_64_rhel6/master/2016.05.02-00.08.56/Release/thk/qa/medium/simulation/use_bump_cell.pyt
+Mon May 02 2016 04:13:31 - TESTCASE [sjord384-10] : file:///projs00/tomahawk/build/linux_x86_64_rhel6/master/2016.05.02-00.08.56/Release/thk/qa/medium/tech/apache_tech_parser.pyt
+Mon May 02 2016 04:13:41 - TESTCASE [sjord384-10] : file:///projs00/tomahawk/build/linux_x86_64_rhel6/master/2016.05.02-00.08.56/Release/thk/qa/medium/tech/tech_estimate.pyt
+Mon May 02 2016 04:13:47 - TESTCASE [sjord384-10] : file:///projs00/tomahawk/build/linux_x86_64_rhel6/master/2016.05.02-00.08.56/Release/thk/qa/medium/tech/tech_models.pyt
+FAILED  : ./simulation/mx4.pyt -- non-zero return code 256
+WARNING: Run mx4.py failed.
+RUN_STATS_DIFF for top at mx4.data.diff ABS -1000 REL -1000
+Mon May 02 2016 04:14:39 - TESTCASE [sjord384-10] : file:///projs00/tomahawk/build/linux_x86_64_rhel6/master/2016.05.02-00.08.56/Release/thk/qa/medium/simulation/use_bump_cell.pyt
+
+--------------------
+TOTAL RUN       : 21
+SCRIPT_ERRORS   : 0
+SCRIPT_WARNINGS : 0
+QA_FAILED       : 1 with non zero exit status.
+
+QA_DIFFS        : 1
+QA_ASSERTS      : 0
+QA_WARNINGS     : 0
+QA_ERRORS       : 1
+
+TAT             : 17 minutes
+BADFILES :
+FAILED     file:///projs00/tomahawk/build/linux_x86_64_rhel6/master/2016.05.02-00.08.56/Release/thk/qa/medium/simulation/mx4.log
+QA_ERROR   file:///projs00/tomahawk/build/linux_x86_64_rhel6/master/2016.05.02-00.08.56/Release/thk/qa/medium/simulation/mx4.log
+DIFF       file:///projs00/tomahawk/build/linux_x86_64_rhel6/master/2016.05.02-00.08.56/Release/thk/qa/medium/simulation/mx4.data.diff
+
+SUMMARY        : UH OH...
+
+TIMES
+    769.58  medium/simulation/mexican_wave_inductive.pyt
+    681.79  medium/simulation/mx4.pyt
+    560.38  medium/simulation/mexican_wave_p2.pyt
+    383.84  medium/simulation/partition_test.pyt
+    218.30  medium/simulation/reduction_test.pyt
+    199.73  medium/simulation/use_bump_cell.pyt
+    118.03  medium/power_gate/power_gate_dist.pyt
+    111.68  medium/current_test/current_test.snap.pyt
+    109.19  medium/current_test/current_test.nosnap.pyt
+    107.75  medium/power_gate/power_gate_mini.pyt
+    103.57  medium/power_gate/power_gate_vert_dist.pyt
+     99.48  medium/simulation/legacy_scenario1.pyt
+     93.55  medium/demo/test_inv_chain.pyt
+     74.41  medium/simulation/mexican_wave_avg.pyt
+     69.85  medium/power_gate/ramp_up_multi.pyt
+     59.96  medium/simulation/crooked.pyt
+     58.30  medium/power_gate/power_gate_super.pyt
+     48.43  medium/power_gate/power_gate_sub.pyt
+     37.93  medium/tech/tech_models.pyt
+     10.67  medium/tech/apache_tech_parser.pyt
+      6.27  medium/tech/tech_estimate.pyt

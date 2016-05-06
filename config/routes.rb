@@ -53,4 +53,9 @@ Rails.application.routes.draw do
   #     # (app/controllers/admin/products_controller.rb)
   #     resources :products
   #   end
+  root to: 'static_pages#home'
+  resources :qa_suites do
+    collection { post :import }
+  end
+  resources :test_cases
 end

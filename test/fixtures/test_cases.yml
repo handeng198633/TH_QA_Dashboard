@@ -1,0 +1,21 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  branch: MyString
+  host: MyString
+  s_time: 2016-05-04 09:53:34
+  e_time: 2016-05-04 09:53:34
+  build_type: MyString
+  status_info: MyString
+  work_path: MyString
+  qa_log_path: MyString
+
+two:
+  branch: MyString
+  host: MyString
+  s_time: 2016-05-04 09:53:34
+  e_time: 2016-05-04 09:53:34
+  build_type: MyString
+  status_info: MyString
+  work_path: MyString
+  qa_log_path: MyString

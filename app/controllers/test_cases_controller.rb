@@ -1,0 +1,3 @@
+class TestCasesController < ApplicationController
+	
+end

@@ -1,0 +1,33 @@
+<% provide(:title, 'Suites') %>
+
+          <div class="row">
+            <div class="col-md-12">
+              <div class="box">
+                <div class="box-header">
+                  <h3 class="box-title">Regression Results</h3>
+                </div><!-- /.box-header -->
+                <div class="box-body no-padding">
+                  <table class="table table-striped">
+                    <tr>
+                      <th>Suite Name</th>
+                      <th>Branch</th>
+                      <th>Type</th>
+                      <th>Start Time</th>
+                      <th>End Time</th>
+                      <th style="width: 40px">Status</th>
+                      <th style="width: 20px">Passed</th>
+                      <th style="width: 20px">Failed</th>
+                    </tr>
+                    <%= render @qa_suites %>
+                  </table>
+                </div><!-- /.box-body -->
+              </div><!-- /.box -->
+            <%= will_paginate %> 
+            </div><!-- /.col -->
+          </div><!-- /.row -->
+
+
+<%= form_tag import_qa_suites_path, multipart: true do %>
+  <%= file_field_tag :file %>
+  <%= submit_tag "Import" %>
+<% end %>
