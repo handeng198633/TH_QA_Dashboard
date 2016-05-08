@@ -1,16 +1,16 @@
                     <tr>
-                      <th><%= @qa_suite.suite_name %></th>
-                      <th><%= @qa_suite.branch  %></th>
-                      <th><%= @qa_suite.type  %></th>
-                      <th><%= @qa_suite.start_time  %></th>
-                      <th><%= @qa_suite.end_time  %></th>
+                      <th style="width: 80px"><%= qa_suite.suite_name %></th>
+                      <th style="width: 40px"><%= qa_suite.branch  %></th>
+                      <th style="width: 40px"><%= qa_suite.build_type  %></th>
+                      <th style="width: 60px"><%= qa_suite.start_time  %></th>
+                      <th style="width: 60px"><%= qa_suite.end_time  %></th>
                       <th style="width: 40px">
-                        <% if @qa_suite.failed_numnber != "0" %>
-                          <span class="label label-success">Failed</span>
+                        <% if qa_suite.failed_numnber != "0" %>
+                          <span class="label label-danger">Failed</span>
                         <% elsif %>
                           <span class="label label-success">Passed</span>
                         <% end %>
                       </th>
-                      <th style="width: 20px">@qa_suite.pass_number</th>
-                      <th style="width: 20px">@qa_suite.failed_numnber</th>
+                      <th style="width: 20px">qa_suite.pass_number</th>
+                      <th style="width: 20px">qa_suite.failed_numnber</th>
                     </tr>

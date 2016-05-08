@@ -9,11 +9,11 @@
                 <div class="box-body no-padding">
                   <table class="table table-striped">
                     <tr>
-                      <th>Suite Name</th>
-                      <th>Branch</th>
-                      <th>Type</th>
-                      <th>Start Time</th>
-                      <th>End Time</th>
+                      <th style="width: 80px">Suite Name</th>
+                      <th style="width: 40px">Branch</th>
+                      <th style="width: 40px">Type</th>
+                      <th style="width: 60px">Start Time</th>
+                      <th style="width: 60px">End Time</th>
                       <th style="width: 40px">Status</th>
                       <th style="width: 20px">Passed</th>
                       <th style="width: 20px">Failed</th>
@@ -28,6 +28,6 @@
 
 
 <%= form_tag import_qa_suites_path, multipart: true do %>
-  <%= file_field_tag :file %>
+  <%= text_field_tag :file %>
   <%= submit_tag "Import" %>
 <% end %>

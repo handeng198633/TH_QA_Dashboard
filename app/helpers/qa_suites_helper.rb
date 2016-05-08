@@ -1,13 +1,4 @@
-############################################
-# Get TH qa date from every logfile.
-# Store data to dashboard web pages(Sqlite)										   
-# Deng Han
-############################################
-#DateTime.parse("05/02/16 03:58:26")
-#DateTime.strptime('05/02/16 03:58:26','%m/%d/%y %H:%M:%S')
-require 'date'
-
-class Log2Data 
+module QaSuitesHelper
 	def parse_time(string)
 		return DateTime.parse(string)
 	end
@@ -51,7 +42,7 @@ class Log2Data
 					elsif line =~ /^PID.+/
 						suite_info[:pid] = line[/[0-9]+/]
 					elsif line =~ /^DISPLAY.+/
-						suite_info[:display] = line[/sjoth.+/]
+						suite_info[:dispaly] = line[/sjoth.+/]
 					elsif line =~ /^HOST.+/
 						suite_info[:host] = line[/sjo.+/]
 					elsif line =~ /^EXECUTABLE.+/
@@ -67,8 +58,3 @@ class Log2Data
 		return suite_info
 	end
 end
-#puts $1
-#puts $2
-#puts $3
-object = Log2Data.new
-puts object.get_suite_data(ARGV[0])
