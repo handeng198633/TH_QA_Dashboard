@@ -25,7 +25,10 @@
             <%= will_paginate %> 
             </div><!-- /.col -->
           </div><!-- /.row -->
-
+<%= form_tag import_qa_suites_path, multipart: true do %>
+  <%= file_field_tag :file %>
+  <%= submit_tag "Import" %>
+<% end %>
 
 <%= form_tag import_qa_suites_path, multipart: true do %>
   <%= text_field_tag :file %>

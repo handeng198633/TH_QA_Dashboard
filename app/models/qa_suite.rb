@@ -1,3 +1,4 @@
+require 'date'
 class QaSuite < ActiveRecord::Base
 	has_many :test_cases
 
@@ -15,7 +16,11 @@ class QaSuite < ActiveRecord::Base
 	def self.get_suite_data(suite_logfile)
 		suite_info = Hash.new
 		cases_info_index = Array.new
-		suite_info[:suite_name], suite_info[:branch] = QaSuite.pre_parse_logfile(suite_logfile)
+		suite_info[:log_file] = suite_logfile
+		#suite_info[:suite_name], suite_info[:branch] = QaSuite.pre_parse_logfile(suite_logfile)
+		suite_info[:branch] = 'Master'
+		suite_info[:suite_name] = 'Medium'
+		suite_info[:build_type] = 'Release'
 		File.open(suite_logfile, "r") do |file|
 			while line = file.gets
 				if not line =~ /^$/
@@ -40,6 +45,7 @@ class QaSuite < ActiveRecord::Base
 						c_info[:qa_log_path] = line[/.projs00.+/]
 					elsif line =~ /^START\sTIME+/
 						suite_info[:start_time]	= QaSuite.strp_time(line[/[0-9]{2}.+$/])
+						suite_info[:date] = Date.today.to_s
 					elsif line =~ /^PID.+/
 						suite_info[:pid] = line[/[0-9]+/]
 					elsif line =~ /^DISPLAY.+/
@@ -51,8 +57,8 @@ class QaSuite < ActiveRecord::Base
 					elsif line =~ /^COMMAND\sLINE.+/
 						suite_info[:command_line] = line[/\W{2}runqa.+/]
 					end
-					suite_info[:pass_number] = 20
-					suite_info[:failed_numnber] = 1
+					suite_info[:pass_number] = 21
+					suite_info[:failed_numnber] = 0
 				end
 			end
 		end
@@ -65,9 +71,18 @@ class QaSuite < ActiveRecord::Base
 
 	def self.strp_time(string)
 		return DateTime.strptime(string,'%m/%d/%y %H:%M:%S')
+		#DateTime.strptime('05/02/16 03:58:26','%m/%d/%y %H:%M:%S')
 	end
 
 	def self.pre_parse_logfile(logfile)
 		return String.new(logfile).split('/')[5], String.new(logfile).split('/')[-3]
+	end
+
+	def self.homepage_qa_suites_today
+		QaSuite.where("date = ?", Date.today.to_s)
+	end
+
+	def self.homepage_qa_suites_yesterday
+		QaSuite.where("date = ?", Date.today.prev_day.to_s)
 	end
 end

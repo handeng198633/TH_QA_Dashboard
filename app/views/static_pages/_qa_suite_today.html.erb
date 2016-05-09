@@ -1,0 +1,16 @@
+                    <tr>
+                      <th style="width: 80px"><%= @qa_suite_today.suite_name %></th>
+                      <th style="width: 40px"><%= @qa_suite_today.branch  %></th>
+                      <th style="width: 40px"><%= @qa_suite_today.build_type  %></th>
+                      <th style="width: 60px"><%= @qa_suite_today.start_time  %></th>
+                      <th style="width: 60px"><%= @qa_suite_today.end_time  %></th>
+                      <th style="width: 40px">
+                        <% if @qa_suite_today.failed_numnber != "0" %>
+                          <span class="btn btn-danger">Failed</span>
+                        <% elsif %>
+                          <span class="btn btn-success">Passed</span>
+                        <% end %>
+                      </th>
+                      <th style="width: 20px"><%= @qa_suite_today.pass_number %></th>
+                      <th style="width: 20px"><%= @qa_suite_today.failed_numnber %></th>
+                    </tr>
