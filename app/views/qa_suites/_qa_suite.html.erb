@@ -6,9 +6,13 @@
                       <th style="width: 60px"><%= qa_suite.end_time  %></th>
                       <th style="width: 40px">
                         <% if qa_suite.failed_numnber != 0 %>
-                          <span class="btn btn-danger">Failed</span>
+                          <span>
+                            <%= link_to "Passed", qa_suite_path(qa_suite.id), class: "btn btn-danger" %>
+                          </span>
                         <% elsif %>
-                          <span class="btn btn-success">Passed</span>
+                          <span>
+                            <%= link_to "Failed", qa_suite_path(qa_suite.id), class: "btn btn-success" %>
+                          </span>
                         <% end %>
                       </th>
                       <th style="width: 20px"><%= qa_suite.pass_number %></th>
