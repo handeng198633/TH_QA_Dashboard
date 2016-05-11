@@ -9,20 +9,44 @@
                 <div class="box-body no-padding">
                   <table class="table table-striped">
                     <tr>
-                      <th style="width: 80px">Suite Name</th>
-                      <th style="width: 40px">Branch</th>
-                      <th style="width: 40px">Type</th>
-                      <th style="width: 60px">Start Time</th>
-                      <th style="width: 60px">End Time</th>
-                      <th style="width: 40px">Status</th>
-                      <th style="width: 20px">Passed</th>
-                      <th style="width: 20px">Failed</th>
+                      <th style="width: 30px">Suite Name</th>
+                      <th style="width: 20px">Branch</th>
+                      <th style="width: 20px">Type</th>
+                      <th style="width: 30px">Start Time</th>
+                      <th style="width: 30px">End Time</th>
+                      <th style="width: 20px">Host</th>
+                      <th style="width: 20px">Display</th>
+                      <th style="width: 20px">Pid</th>
+                      <th style="width: 20px">Log File Path</th>
                     </tr>
-                    <!--<%= render @qa_suites %>-->
+                    <tr>
+                      <th style="width: 30px"><%= @qa_suite.suite_name %></th>
+                      <th style="width: 20px"><%= @qa_suite.branch %></th>
+                      <th style="width: 20px"><%= @qa_suite.build_type %></th>
+                      <th style="width: 30px"><%= @qa_suite.start_time %></th>
+                      <th style="width: 30px"><%= @qa_suite.end_time %></th>
+                      <th style="width: 20px"><%= @qa_suite.host %></th>
+                      <th style="width: 20px"><%= @qa_suite.display %></th>
+                      <th style="width: 20px"><%= @qa_suite.pid %></th>
+                      <th style="width: 20px">
+                        <span>
+                         <%= link_to "Log File", @qa_suite.log_file %>
+                      </span>
+                      </th>
+                    </tr>
+                  </table>
+                  <table class="table table-striped">
+                    <tr>
+                      <th style="width: 60px">Command Line</th>
+                      <th style="width: 60px">Executable</th>
+                    </tr>
+                    <tr>
+                      <th style="width: 30px"><%= @qa_suite.command_line %></th>
+                      <th style="width: 30px"><%= @qa_suite.executable %></th>
+                    </tr>
                   </table>
                 </div><!-- /.box-body -->
               </div><!-- /.box -->
-            <%= will_paginate %> 
             </div><!-- /.col -->
           </div><!-- /.row -->
 
@@ -35,18 +59,18 @@
                 <div class="box-body no-padding">
                   <table class="table table-striped">
                     <tr>
-                      <th style="width: 80px">Case Name</th>
-                      <th style="width: 40px">Group</th>
-                      <th style="width: 40px">Type</th>
-                      <th style="width: 60px">Start Time</th>
-                      <th style="width: 60px">End Time</th>
-                      <th style="width: 40px">Status</th>
-                      <th style="width: 40px">Log Path</th>
+                      <th style="width: 30px">Case Name</th>
+                      <th style="width: 30px">Branch</th>
+                      <th style="width: 30px">Group</th>
+                      <th style="width: 30px">Host</th>
+                      <th style="width: 30px">Start Time</th>
+                      <th style="width: 30px">End Time</th>
+                      <th style="width: 30px">Status</th>
+                      <th style="width: 30px">Log Path</th>
                     </tr>
-                   <!-- <%= render @qa_suites %> -->
+                  <%= render @test_cases %>
                   </table>
                 </div><!-- /.box-body -->
-              </div><!-- /.box -->
-            <%= will_paginate %> 
+              </div><!-- /.box --> 
             </div><!-- /.col -->
           </div><!-- /.row -->

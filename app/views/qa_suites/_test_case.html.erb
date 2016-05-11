@@ -1,0 +1,12 @@
+                    <tr>
+                      <th style="width: 20px"><% test_case.case_name %></th>
+                      <th style="width: 20px"><% test_case.branch %></th>
+                      <th style="width: 20px"><% test_case.group %></th>
+                      <th style="width: 20px"><% test_case.host %></th>
+                      <th style="width: 30px"><% test_case.s_time %></th>
+                      <th style="width: 30px"><% test_case.e_time %></th>
+                      <th style="width: 30px"><% test_case.status %></th>
+                      <th style="width: 20px">
+                        <%= link_to "Log File", test_case.qa_log_path %>
+                      </th>
+                    </tr>

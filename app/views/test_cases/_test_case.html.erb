@@ -1,0 +1,22 @@
+                    <tr>
+                      <th style="width: 30px"><%= test_case.case_name %></th>
+                      <th style="width: 30px"><%= test_case.branch %></th>
+                      <th style="width: 30px"><%= test_case.group %></th>
+                      <th style="width: 30px"><%= test_case.host %></th>
+                      <th style="width: 30px"><%= test_case.s_time %></th>
+                      <th style="width: 30px"><%= test_case.e_time %></th>
+                      <th style="width: 30px">
+                        <% if test_case.status == 'Failed' %>
+                          <span>
+                            <%= link_to "Failed", test_case.qa_log_path, class: "btn btn-danger" %>
+                          </span>
+                        <% elsif test_case.status == 'Passed'%>
+                          <span>
+                            <%= link_to "Passed", test_case.qa_log_path, class: "btn btn-success" %>
+                          </span>
+                        <% end %>                        
+                      </th>
+                      <th style="width: 30px">
+                        <%= link_to "Log File", test_case.qa_log_path %>
+                      </th>
+                    </tr>

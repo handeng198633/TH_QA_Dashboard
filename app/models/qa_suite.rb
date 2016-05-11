@@ -9,13 +9,20 @@ class QaSuite < ActiveRecord::Base
 #		qa_suite_hash = `ruby #{script} #{file}`
 #		suite_hash, cases_index = `ruby #{script} #{file}`
 		qa_suite_hash = Hash.new
-		qa_suite_hash = QaSuite.get_suite_data(logfile)
-		QaSuite.create! qa_suite_hash
+		tc_index = Array.new
+		time_hash = Hash.new
+		qa_suite_hash, tc_index = QaSuite.get_suite_data(logfile)
+		qa_suite = QaSuite.create! qa_suite_hash
+		tc_index.each do |tc|
+			tc[:suite_id] = qa_suite.id
+			TestCase.create! tc
+		end
 	end
 
 	def self.get_suite_data(suite_logfile)
 		suite_info = Hash.new
-		cases_info_index = Array.new
+		tc_info_index = []
+		times_hash = Hash.new
 		suite_info[:log_file] = suite_logfile
 		#suite_info[:suite_name], suite_info[:branch] = QaSuite.pre_parse_logfile(suite_logfile)
 		suite_info[:branch] = 'Master'
@@ -29,20 +36,24 @@ class QaSuite < ActiveRecord::Base
 						c_info[:case_name] = line[/.projs00.+/].split('/')[-1].gsub(/.pyt/, '')
 						c_info[:group] = line[/.projs00.+/].split('/')[-2]
 						c_info[:suite_name], c_info[:branch] = suite_info[:suite_name], suite_info[:branch]
-						c_info[:start_time] = QaSuite.parse_time(line[/^.+[0-9]{2}:[0-9]{2}/])
+						c_info[:s_time] = QaSuite.parse_time(line[/^.+[0-9]{2}:[0-9]{2}/])
 						c_info[:host] = line[/sjo[a-zA-Z]+[0-9]+\W[0-9]+/]					
 						c_info[:qa_log_path] = line[/.projs00.+/].gsub(/.pyt/, '.log') #need
 						c_info[:status] = 'Passed'
-						cases_info_index << c_info
+						tc_info_index << c_info
 					elsif line =~ /^FAILED.+file.+/
 						c_info = Hash.new
 						c_info[:case_name] = line[/.projs00.+/].split('/')[-1].gsub(/.log/, '')
 						c_info[:group] = line[/.projs00.+/].split('/')[-2]
 						c_info[:suite_name], c_info[:branch] = suite_info[:suite_name], suite_info[:branch]
+#						c_info[:s_time] = QaSuite.parse_time(line[/^.+[0-9]{2}:[0-9]{2}/])
 #						c_info[:start_time] = parse_time(line[/^.+[0-9]{2}:[0-9]{2}/])
 #						c_info[:host] = line[/sjo[a-zA-Z]+[0-9]+\W[0-9]+/]
 						c_info[:status] = 'Failed'					
 						c_info[:qa_log_path] = line[/.projs00.+/]
+						tc_info_index << c_info
+					elsif line =~/^\s+[0-9]+\W[0-9]{2}.+/
+						times_hash[line.split('/')[-1].split('.')[0..-2].join('.')] = line.split('.')[0].strip
 					elsif line =~ /^START\sTIME+/
 						suite_info[:start_time]	= QaSuite.strp_time(line[/[0-9]{2}.+$/])
 						suite_info[:date] = Date.today.to_s
@@ -57,12 +68,15 @@ class QaSuite < ActiveRecord::Base
 					elsif line =~ /^COMMAND\sLINE.+/
 						suite_info[:command_line] = line[/\W{2}runqa.+/]
 					end
-					suite_info[:pass_number] = 21
-					suite_info[:failed_numnber] = 0
 				end
 			end
 		end
-		return suite_info
+		tc_info_index.each do |h|
+			if not h[:s_time].nil?
+				h[:e_time] = h[:s_time] + times_hash[h[:case_name]].to_i.seconds
+			end
+		end
+		return suite_info, tc_info_index
 	end
 
 	def self.parse_time(string)

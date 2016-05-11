@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160509030618) do
+ActiveRecord::Schema.define(version: 20160511033402) do
 
   create_table "qa_suites", force: :cascade do |t|
     t.string   "suite_name"
@@ -52,6 +52,7 @@ ActiveRecord::Schema.define(version: 20160509030618) do
     t.string   "qa_log_path"
     t.datetime "created_at",     null: false
     t.datetime "updated_at",     null: false
+    t.integer  "suite_id"
   end
 
   add_index "test_cases", ["case_name", "created_at"], name: "index_test_cases_on_case_name_and_created_at"
