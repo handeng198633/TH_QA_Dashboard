@@ -21,6 +21,8 @@ class QaSuite < ActiveRecord::Base
 
 	def self.get_suite_data(suite_logfile)
 		suite_info = Hash.new
+		pass_number = 0
+		failed_number = 0
 		tc_info_index = []
 		times_hash = Hash.new
 		suite_info[:log_file] = suite_logfile
@@ -41,6 +43,7 @@ class QaSuite < ActiveRecord::Base
 						c_info[:qa_log_path] = line[/.projs00.+/].gsub(/.pyt/, '.log') #need
 						c_info[:status] = 'Passed'
 						tc_info_index << c_info
+						pass_number += 1
 					elsif line =~ /^FAILED.+file.+/
 						c_info = Hash.new
 						c_info[:case_name] = line[/.projs00.+/].split('/')[-1].gsub(/.log/, '')
@@ -52,6 +55,7 @@ class QaSuite < ActiveRecord::Base
 						c_info[:status] = 'Failed'					
 						c_info[:qa_log_path] = line[/.projs00.+/]
 						tc_info_index << c_info
+						failed_number += 1
 					elsif line =~/^\s+[0-9]+\W[0-9]{2}.+/
 						times_hash[line.split('/')[-1].split('.')[0..-2].join('.')] = line.split('.')[0].strip
 					elsif line =~ /^START\sTIME+/
@@ -68,6 +72,9 @@ class QaSuite < ActiveRecord::Base
 					elsif line =~ /^COMMAND\sLINE.+/
 						suite_info[:command_line] = line[/\W{2}runqa.+/]
 					end
+					suite_info[:pass_number] = pass_number
+					suite_info[:failed_numnber] = failed_number
+					suite_info[:pass_number] = 'Release'
 				end
 			end
 		end

@@ -1,0 +1,6 @@
+var html = "<%= j(render('form', remote: true)) %>";
+// bootbox 弹窗插件 http://bootboxjs.com/
+bootbox.dialog({
+  title: "Log Content",
+  message: html
+});

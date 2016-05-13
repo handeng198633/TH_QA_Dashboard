@@ -5,7 +5,7 @@
                       <th style="width: 60px"><%= @qa_suite_yesterday.start_time  %></th>
                       <th style="width: 60px"><%= @qa_suite_yesterday.end_time  %></th>
                       <th style="width: 40px">
-                        <% if @qa_suite_yesterday.failed_numnber != "0" %>
+                        <% if @qa_suite_yesterday.failed_numnber != 0 %>
                           <span class="btn btn-danger">Failed</span>
                         <% elsif %>
                           <span class="btn btn-success">Passed</span>

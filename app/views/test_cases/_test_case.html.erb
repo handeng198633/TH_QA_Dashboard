@@ -17,6 +17,6 @@
                         <% end %>                        
                       </th>
                       <th style="width: 30px">
-                        <%= link_to "Log File", test_case.qa_log_path %>
+                        <%= link_to "Passed", '/logs/' + test_case.id.to_s, class: "btn btn-default" %>
                       </th>
                     </tr>

@@ -58,4 +58,5 @@ Rails.application.routes.draw do
     collection { post :import }
   end
   resources :test_cases
+  resources :logs
 end
