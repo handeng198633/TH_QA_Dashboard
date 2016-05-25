@@ -5,7 +5,7 @@ class QaSuitesController < ApplicationController
 
 	def show
 		@qa_suite = QaSuite.find(params[:id])
-		@test_cases = TestCase.where("suite_id = ?", params[:id]).pag
+		@test_cases = TestCase.where("suite_id = ?", params[:id])
 	end
 
 	def index
