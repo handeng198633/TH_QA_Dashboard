@@ -56,9 +56,27 @@
 		    <script src="/assets/daterangepicker.js"></script>
 		    <script src="/assets/bootstrap-datepicker.js"></script>
 		    <script src="/assets/jquery.slimscroll.min.js"></script>
+		    <script src="/assets/icheck.min.js"></script>
 		    <script src="/assets/fastclick.min.js"></script>
 		    <script src="/assets/app.min.js"></script>
 			<script src="/assets/bootbox.min.js"></script>
+			<script>
+                        $(function () {
+                                        $('input[type="checkbox"].flat-red, input[type="radio"].flat-red').iCheck({
+                                        checkboxClass: 'icheckbox_flat-blue',
+                                        radioClass: 'iradio_flat-blue'
+                                        }).on('ifChanged', function(e) {
+                                                var isChecked = e.currentTarget.checked;
+                                                if (isChecked == true) {
+                                                        $.ajax({
+                                                        type: "POST",
+                                                        url: "main",
+                                                        data: { version: $(this).closest('input').val(), checked: isChecked }
+                                                        });
+                                                }
+                                        });
+                        });
+             </script>
 
 </body>
 </html>

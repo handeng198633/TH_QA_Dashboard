@@ -72,11 +72,11 @@ class QaSuite < ActiveRecord::Base
 					elsif line =~ /^COMMAND\sLINE.+/
 						suite_info[:command_line] = line[/\W{2}runqa.+/]
 					end
-					suite_info[:pass_number] = pass_number
-					suite_info[:failed_numnber] = failed_number
-					suite_info[:pass_number] = 'Release'
 				end
 			end
+			suite_info[:pass_number] = pass_number - failed_number
+			suite_info[:failed_numnber] = failed_number
+			suite_info[:pass_number] = 'Release'
 		end
 		tc_info_index.each do |h|
 			if not h[:s_time].nil?
@@ -94,16 +94,29 @@ class QaSuite < ActiveRecord::Base
 		return DateTime.strptime(string,'%m/%d/%y %H:%M:%S')
 		#DateTime.strptime('05/02/16 03:58:26','%m/%d/%y %H:%M:%S')
 	end
+        def self.pre_parse_logfile(logfile)
+            return String.new(logfile).split('/')[5].downcase, String.new(logfile).split('/')[4], String.new(logfile).split('/')[-2], String.new(logfile).split('/')[6], String.new(logfile).split('/')[-5]
+        end
 
-	def self.pre_parse_logfile(logfile)
-		return String.new(logfile).split('/')[5], String.new(logfile).split('/')[-3]
-	end
+        def self.homepage_qa_suites_today(version, platform)
+                QaSuite.where("date = ?", Date.today.to_s).where("version = ?", version).where("platform = ?", platform)
+        end
 
-	def self.homepage_qa_suites_today
-		QaSuite.where("date = ?", Date.today.to_s)
-	end
+        def self.homepage_qa_suites_today_rhel5
+                QaSuite.where("date = ?", Date.today.to_s).where("platform = ?", "linux_x86_64_rhel5")
+        end
 
-	def self.homepage_qa_suites_yesterday
-		QaSuite.where("date = ?", Date.today.prev_day.to_s)
-	end
+        def self.homepage_qa_suites_yesterday
+                QaSuite.where("date = ?", Date.today.prev_day.to_s).where("platform = ?", "linux_x86_64_rhel6")
+        end
+
+        def self.homepage_qa_suites_yesterday_rhel5
+                QaSuite.where("date = ?", Date.today.prev_day.to_s).where("platform = ?", "linux_x86_64_rhel5")
+        end
+        def rm_UTC (tstr)
+           return 'N/A' if tstr == nil
+           return tstr.to_s.sub(/ UTC/, '')
+        end
+
 end
+

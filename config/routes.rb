@@ -54,6 +54,7 @@ Rails.application.routes.draw do
   #     resources :products
   #   end
   root to: 'static_pages#home'
+  post 'main' => 'static_pages#home'
   resources :qa_suites do
     collection { post :import }
   end

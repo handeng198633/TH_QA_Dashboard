@@ -1,17 +1,78 @@
-<% provide(:title, 'Home Page') %>
+<% provide(:title, 'RHEL 6 - Home Page') %>
 
+<section class="content-header">
+     <h1>
+        RHEL6 - HomePage
+     </h1>
+        <ol class="breadcrumb">
+       <li><a href="/"><i class="fa fa-dashboard"></i> Home</a></li>
+       <li class="active">HomePage</li>
+       </ol>
+<section>
+  <!-- Main Content -->
+    <section class="content">
                   <div class="row">
-                      <div class="col-md-12">
+        <div class="row">
+        <div class=" col-md-3 col-xs-3">
+        </div>
+        <div class="form-group col-md-3 col-xs-3">
+                <label><%= check_box_tag 'version', 'Master', true, type: 'radio', class: "flat-red" %>Master</label>
+                <label><%= check_box_tag 'version', '18.1', false, type: 'radio', class: "flat-red" %>18.1</label>
+                <label><%= check_box_tag 'version', '17.2', false, type: 'radio', class: "flat-red" %>17.2</label>
+                <label><%= check_box_tag 'version', '17.1', false, type: 'radio', class: "flat-red" %>17.1</label>
+        </div>
+        <div class="form-group col-md-3 col-xs-3">
+                <label><%= check_box_tag 'platform', 'linux_x86_64_rhel5', false, type: 'radio', class: "flat-red" %>RHEL5</label>
+                <label><%= check_box_tag 'platform', 'linux_x86_64_rhel6', true, type: 'radio', class: "flat-red" %>RHEL6</label>
+                <label><%= check_box_tag 'platform', 'linux_x86_64_rhel7', false, type: 'radio', class: "flat-red" %>RHEL7</label>
+        </div>
+        <div class=" col-md-3 col-xs-3">
+        </div>
+        </div>
+                      <div class="col-md-4">
                         <div class="box">
                           <div class="box-header">
-                            <h3 class="box-title">Regression Results: <strong><%= @qa_suite_today.first.date %></strong></h3>
+                            <h3 class="box-title">Build Results: 
+                                <% if @build_step_today.first.nil? %>
+                                        <div class="overlay">
+                                                <i class="fa fa-refresh fa-spin"></i>
+                                        </div>
+                                <% elsif %>
+                                        <strong><%= @build_step_today.first.build %></strong>
+                                <% end %>
+                            </h3>
+                          </div><!-- /.box-header -->
+                          <div class="box-body no-padding">
+                            <table class="table table-striped">
+                              <tr>
+                                <th>Step</th>
+                                <th>Build Type</th>
+                                <th>Status</th>
+                              </tr>
+                              <%= render @build_step_today %>
+                            </table>
+                          </div><!-- /.box-body -->
+                        </div><!-- /.box -->
+                      </div><!-- /.col -->
+
+                      <div class="col-md-8">
+                        <div class="box">
+                          <div class="box-header">
+                            <h3 class="box-title">Regression Results: 
+                                <% if @qa_suite_today.first.nil? %>
+                                        <div class="overlay">
+                                                <i class="fa fa-refresh fa-spin"></i>
+                                        </div>
+                                <% elsif %>
+                                        <strong><%= @qa_suite_today.first.branch %></strong>
+                                <% end %>
+                            </h3>
                           </div><!-- /.box-header -->
                           <div class="box-body no-padding">
                             <table class="table table-striped">
                               <tr>
                                 <th style="width: 80px">Suite Name</th>
-                                <th style="width: 40px">Branch</th>
-                                <th style="width: 40px">Type</th>
+                                <th style="width: 40px">Build Type</th>
                                 <th style="width: 60px">Start Time</th>
                                 <th style="width: 60px">End Time</th>
                                 <th style="width: 40px">Status</th>
@@ -26,17 +87,50 @@
                   </div>
 
                   <div class="row">
-                      <div class="col-md-12">
+                        <div class="col-md-4">
                         <div class="box">
                           <div class="box-header">
-                            <h3 class="box-title">Regression Results: <strong><%= @qa_suite_today.first.date %></strong></h3>
+                            <h3 class="box-title">Build Results: 
+                                <% if @build_step_yesterday.first.nil? %>
+                                        <div class="overlay">
+                                                <i class="fa fa-refresh fa-spin"></i>
+                                        </div>`
+                                <% elsif %>
+                                        <strong><%= @build_step_yesterday.first.build %></strong>
+                                <% end %>
+                            </h3>
+                          </div><!-- /.box-header -->
+                          <div class="box-body no-padding">
+                            <table class="table table-striped">
+                              <tr>
+                                <th>Step</th>
+                                <th>Build Type</th>
+                                <th>Status</th>
+                              </tr>
+                              <%= render @build_step_yesterday %>
+                            </table>
+                          </div><!-- /.box-body -->
+                        </div><!-- /.box -->
+                      </div><!-- /.col -->
+
+                      <div class="col-md-8">
+                        <div class="box">
+                          <div class="box-header">
+                            <h3 class="box-title">Regression Results: 
+                                <% if @qa_suite_yesterday.first.nil? %>
+                                        <div class="overlay">
+                                                <i class="fa fa-refresh fa-spin"></i>
+                                        </div>
+                                <% elsif %>
+                                        <strong><%= @qa_suite_yesterday.first.branch %></strong>
+                                <% end %>
+                            </h3>
                           </div><!-- /.box-header -->
                           <div class="box-body no-padding">
                             <table class="table table-striped">
                               <tr>
                                 <th style="width: 80px">Suite Name</th>
-                                <th style="width: 40px">Branch</th>
-                                <th style="width: 40px">Type</th>
+                                <th style="width: 40px">Build Type</th>
                                 <th style="width: 60px">Start Time</th>
                                 <th style="width: 60px">End Time</th>
                                 <th style="width: 40px">Status</th>
@@ -49,36 +143,4 @@
                         </div><!-- /.box -->
                       </div><!-- /.col -->
                   </div>
-
-                <div class="row">
-			            <div class="col-xs-6">
-			              <!-- interactive chart -->
-			              <div class="box box-primary">
-			                <div class="box-header with-border">
-			                  <h3 class="box-title">Regression Status Chart</h3>
-			                  <div class="box-tools pull-right">
-			                    <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
-			                    <button class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
-			                  </div>
-			                </div>
-			                <div class="box-body chart-responsive">
-			                  <div class="chart" id="revenue-chart" style="height: 300px;"></div>
-			                </div><!-- /.box-body -->
-			              </div><!-- /.box -->			              
-
-			            </div><!-- /.col -->
-			            <div class="col-xs-6">
-				              <div class="box box-primary">
-				                <div class="box-header with-border">
-				                  <i class="fa fa-bar-chart-o"></i>
-				                  <h3 class="box-title">Load Chart</h3>
-				                  <div class="box-tools pull-right">
-				                    <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
-				                    <button class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
-				                  </div>
-				                </div>
-				                <div class="box-body">
-				                  <div id="bar-chart" style="height: 300px;"></div>
-				                </div><!-- /.box-body-->
-				              </div><!-- /.box -->
-			         </div><!-- /.row -->
+  </section>

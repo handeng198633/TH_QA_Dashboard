@@ -1,0 +1,46 @@
+#-*- Org -*-
+
+:: Ansys, 2012 - 2014.  All data confidential ::
+
+COMMAND LINE : ./runqa --build Optimized --force --report_time --central_db_dir /projs00/tomahawk/build/linux_x86_64_rhel6/master/2016.05.29-00.09.03 --skip_run_stats_run
+time_check -j 8 channel/ch1x1.pyt opu_top/opu_top_pdn_opt.pyt opu_top/opu_top_all.pyt p40/p40.pyt sin1/sin1_gcf.pyt mem_macro_bcm28/ram_macro.pyt
+EXECUTABLE   : /projs00/tomahawk/build/linux_x86_64_rhel6/master/2016.05.29-00.09.03/Optimized/thk/dev/build/linux_x86_64_rhel6/Optimized/app/gps/gps
+HOST         : sjord512-2
+DISPLAY      : sjothqa32-1:87
+PID          : 10337
+START TIME   : 05/29/16 04:41:07
+NUM TESTS    : 6
+
+Sun May 29 2016 04:41:07 - TESTCASE [sjord512-2] : file:///projs00/tomahawk/build/linux_x86_64_rhel6/master/2016.05.29-00.09.03/Optimized/thk/qa/customer/mem_macro_bcm28/
+ram_macro.pyt
+Sun May 29 2016 04:41:07 - TESTCASE [sjord512-2] : file:///projs00/tomahawk/build/linux_x86_64_rhel6/master/2016.05.29-00.09.03/Optimized/thk/qa/customer/opu_top/opu_top_
+all.pyt
+Sun May 29 2016 04:41:07 - TESTCASE [sjord512-2] : file:///projs00/tomahawk/build/linux_x86_64_rhel6/master/2016.05.29-00.09.03/Optimized/thk/qa/customer/p40/p40.pyt
+Sun May 29 2016 04:41:07 - TESTCASE [sjord512-2] : file:///projs00/tomahawk/build/linux_x86_64_rhel6/master/2016.05.29-00.09.03/Optimized/thk/qa/customer/channel/ch1x1.py
+t
+Sun May 29 2016 04:41:07 - TESTCASE [sjord512-2] : file:///projs00/tomahawk/build/linux_x86_64_rhel6/master/2016.05.29-00.09.03/Optimized/thk/qa/customer/sin1/sin1_gcf.py
+t
+Sun May 29 2016 04:41:07 - TESTCASE [sjord512-2] : file:///projs00/tomahawk/build/linux_x86_64_rhel6/master/2016.05.29-00.09.03/Optimized/thk/qa/customer/opu_top/opu_top_
+pdn_opt.pyt
+
+--------------------
+TOTAL RUN       : 6
+SCRIPT_ERRORS   : 0
+SCRIPT_WARNINGS : 0
+
+QA_DIFFS        : 0
+QA_ASSERTS      : 0
+QA_WARNINGS     : 0
+QA_ERRORS       : 0
+
+TAT             : 2 hours
+
+SUMMARY        : GREAT!
+
+TIMES
+   7310.26  customer/opu_top/opu_top_pdn_opt.pyt
+   5248.55  customer/channel/ch1x1.pyt
+   4542.66  customer/p40/p40.pyt
+   2844.16  customer/opu_top/opu_top_all.pyt
+    268.68  customer/sin1/sin1_gcf.pyt
+     66.36  customer/mem_macro_bcm28/ram_macro.pyt
