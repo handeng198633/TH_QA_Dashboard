@@ -1,0 +1,57 @@
+                        $(function () {
+                                        $('input[type="radio"].flat-red').iCheck({
+                                        checkboxClass: 'icheckbox_flat-blue',
+                                        radioClass: 'iradio_flat-blue'
+                                        }).on('ifChanged', function(e) {
+                                                var isChecked = e.currentTarget.checked;
+                                                if (isChecked == true) {
+                                                		$('input[type="checkbox"].flat-red').iCheck({
+                                        				checkboxClass: 'icheckbox_flat-blue',
+                                        				radioClass: 'iradio_flat-blue'
+                                        				}).on('ifchecked', function(m) {
+                                        					var	checkedType = $(this).closest('input').attr('name')
+                                        					var	checkedValue = $(this).closest('input').val()
+                                        					});
+                                                        $.ajax({
+                                                        type: "POST",
+                                                        url: "main",
+                                                        data: { version: $(this).closest('input').val(), checkedType: checkedValue }
+                                                        });
+                                                }
+                                        });
+                                        $('input[type="checkbox"].flat-red').iCheck({
+                                        checkboxClass: 'icheckbox_flat-blue',
+                                        radioClass: 'iradio_flat-blue'
+                                        }).on('ifChanged', function(e) {
+                                                var isChecked = e.currentTarget.checked;
+                                                if (isChecked == true) {
+                                                		$('input[type="radio"].flat-red').iCheck({
+                                        				checkboxClass: 'icheckbox_flat-blue',
+                                        				radioClass: 'iradio_flat-blue'
+                                        				}).on('ifchecked', function(e) {
+                                        					var	versionType = $(this).closest('input').attr('name')
+                                        					var	versionValue = $(this).closest('input').val()
+                                        					});
+                                                        $.ajax({
+                                                        type: "POST",
+                                                        url: "main",
+                                                        data: { platform: $(this).closest('input').val(), versionType: versionValue }
+                                                        });
+                                                }
+                                        });
+                        });
+
+                        $('input[type="checkbox"].flat-red').iCheck({
+                                                                checkboxClass: 'icheckbox_flat-blue',
+                                                                radioClass: 'icheckbox_flat-blue',
+                                                        }).on('ifChecked', function(e) {
+                                                                if (e.currentTarget.name != changedType){
+                                                                        var checkedType = e.currentTarget.name;
+                                                                        var checkedValue = e.currentTarget.value;
+                                                                        $.ajax({
+                                                                        type: "POST",
+                                                                        url: "main",
+                                                                        data: { changedType : changedValue, checkedType: checkedValue }
+                                                                });
+                                                                }
+                                                                                                        });

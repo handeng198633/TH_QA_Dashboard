@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  get '/' => 'virtual_users#create'
+  post '/' => 'virtual_users#create'
+  get 'homepage' => 'static_pages#home'
+  post 'select' => 'static_pages#select'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
@@ -53,8 +57,7 @@ Rails.application.routes.draw do
   #     # (app/controllers/admin/products_controller.rb)
   #     resources :products
   #   end
-  root to: 'static_pages#home'
-  post 'main' => 'static_pages#home'
+  #root to: 'static_pages#home'
   resources :qa_suites do
     collection { post :import }
   end

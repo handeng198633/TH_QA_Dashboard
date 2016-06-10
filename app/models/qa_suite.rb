@@ -26,10 +26,7 @@ class QaSuite < ActiveRecord::Base
 		tc_info_index = []
 		times_hash = Hash.new
 		suite_info[:log_file] = suite_logfile
-		#suite_info[:suite_name], suite_info[:branch] = QaSuite.pre_parse_logfile(suite_logfile)
-		suite_info[:branch] = 'Master'
-		suite_info[:suite_name] = 'Medium'
-		suite_info[:build_type] = 'Release'
+		suite_info[:version], suite_info[:platform], suite_info[:suite_name], suite_info[:branch], suite_info[:build_type] = QaSuite.pre_parse_logfile(suite_logfile)
 		File.open(suite_logfile, "r") do |file|
 			while line = file.gets
 				if not line =~ /^$/
@@ -76,7 +73,6 @@ class QaSuite < ActiveRecord::Base
 			end
 			suite_info[:pass_number] = pass_number - failed_number
 			suite_info[:failed_numnber] = failed_number
-			suite_info[:pass_number] = 'Release'
 		end
 		tc_info_index.each do |h|
 			if not h[:s_time].nil?
@@ -95,11 +91,11 @@ class QaSuite < ActiveRecord::Base
 		#DateTime.strptime('05/02/16 03:58:26','%m/%d/%y %H:%M:%S')
 	end
         def self.pre_parse_logfile(logfile)
-            return String.new(logfile).split('/')[5].downcase, String.new(logfile).split('/')[4], String.new(logfile).split('/')[-2], String.new(logfile).split('/')[6], String.new(logfile).split('/')[-5]
+            return 'master', 'linux_x86_64_rhel6', 'test_suite', 'test_branch', 'test_type'
         end
 
-        def self.homepage_qa_suites_today(version, platform)
-                QaSuite.where("date = ?", Date.today.to_s).where("version = ?", version).where("platform = ?", platform)
+        def self.homepage_qa_suites_today(version, platform, timestamp)
+                QaSuite.where("date = ?", timestamp.split('T')[0]).where("version = ?", version.downcase).where("platform = ?", platform)
         end
 
         def self.homepage_qa_suites_today_rhel5

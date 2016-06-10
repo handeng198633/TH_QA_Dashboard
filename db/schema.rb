@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160513073314) do
+ActiveRecord::Schema.define(version: 20160607021506) do
 
   create_table "logs", force: :cascade do |t|
     t.datetime "created_at", null: false
@@ -37,10 +37,12 @@ ActiveRecord::Schema.define(version: 20160513073314) do
     t.text     "status"
     t.integer  "pass_number"
     t.integer  "failed_numnber"
-    t.datetime "created_at",     null: false
-    t.datetime "updated_at",     null: false
+    t.datetime "created_at",                                    null: false
+    t.datetime "updated_at",                                    null: false
     t.string   "date"
     t.string   "log_file"
+    t.string   "version",        default: "master"
+    t.string   "platform",       default: "linux_x86_64_rhel6"
   end
 
   create_table "test_cases", force: :cascade do |t|
@@ -62,5 +64,17 @@ ActiveRecord::Schema.define(version: 20160513073314) do
   end
 
   add_index "test_cases", ["case_name", "created_at"], name: "index_test_cases_on_case_name_and_created_at"
+
+  create_table "virtual_users", force: :cascade do |t|
+    t.string   "user_name"
+    t.string   "user_session"
+    t.string   "version",      default: "master"
+    t.string   "platform",     default: "linux_x86_64_rhel6"
+    t.string   "timestamp",    default: "today"
+    t.datetime "created_at",                                  null: false
+    t.datetime "updated_at",                                  null: false
+  end
+
+  add_index "virtual_users", ["user_name", "user_session"], name: "index_virtual_users_on_user_name_and_user_session"
 
 end

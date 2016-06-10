@@ -11,55 +11,30 @@
 <section>
   <!-- Main Content -->
     <section class="content">
-                  <div class="row">
         <div class="row">
-        <div class=" col-md-3 col-xs-3">
-        </div>
-        <div class="form-group col-md-3 col-xs-3">
+                <div class=" col-md-3 col-xs-3">
+                </div>
+                <div class="form-group col-md-3 col-xs-3">
                 <label><%= check_box_tag 'version', 'Master', true, type: 'radio', class: "flat-red" %>Master</label>
                 <label><%= check_box_tag 'version', '18.1', false, type: 'radio', class: "flat-red" %>18.1</label>
                 <label><%= check_box_tag 'version', '17.2', false, type: 'radio', class: "flat-red" %>17.2</label>
                 <label><%= check_box_tag 'version', '17.1', false, type: 'radio', class: "flat-red" %>17.1</label>
-        </div>
-        <div class="form-group col-md-3 col-xs-3">
+                </div>
+                <div class="form-group col-md-3 col-xs-3">
                 <label><%= check_box_tag 'platform', 'linux_x86_64_rhel5', false, type: 'radio', class: "flat-red" %>RHEL5</label>
                 <label><%= check_box_tag 'platform', 'linux_x86_64_rhel6', true, type: 'radio', class: "flat-red" %>RHEL6</label>
                 <label><%= check_box_tag 'platform', 'linux_x86_64_rhel7', false, type: 'radio', class: "flat-red" %>RHEL7</label>
+                </div>
+                <div class=" col-md-3 col-xs-3">
+                </div>
         </div>
-        <div class=" col-md-3 col-xs-3">
-        </div>
-        </div>
-                      <div class="col-md-4">
-                        <div class="box">
-                          <div class="box-header">
-                            <h3 class="box-title">Build Results: 
-                                <% if @build_step_today.first.nil? %>
-                                        <div class="overlay">
-                                                <i class="fa fa-refresh fa-spin"></i>
-                                        </div>
-                                <% elsif %>
-                                        <strong><%= @build_step_today.first.build %></strong>
-                                <% end %>
-                            </h3>
-                          </div><!-- /.box-header -->
-                          <div class="box-body no-padding">
-                            <table class="table table-striped">
-                              <tr>
-                                <th>Step</th>
-                                <th>Build Type</th>
-                                <th>Status</th>
-                              </tr>
-                              <%= render @build_step_today %>
-                            </table>
-                          </div><!-- /.box-body -->
-                        </div><!-- /.box -->
-                      </div><!-- /.col -->
-
+        <div class="row">
+        <div id="qa_suite_today_table">
                       <div class="col-md-8">
                         <div class="box">
                           <div class="box-header">
                             <h3 class="box-title">Regression Results: 
-                                <% if @qa_suite_today.first.nil? %>
+                                <% if @qa_suite_today.last.nil? %>
                                         <div class="overlay">
                                                 <i class="fa fa-refresh fa-spin"></i>
                                         </div>
@@ -84,63 +59,24 @@
                           </div><!-- /.box-body -->
                         </div><!-- /.box -->
                       </div><!-- /.col -->
-                  </div>
-
-                  <div class="row">
-                        <div class="col-md-4">
-                        <div class="box">
-                          <div class="box-header">
-                            <h3 class="box-title">Build Results: 
-                                <% if @build_step_yesterday.first.nil? %>
-                                        <div class="overlay">
-                                                <i class="fa fa-refresh fa-spin"></i>
-                                        </div>`
-                                <% elsif %>
-                                        <strong><%= @build_step_yesterday.first.build %></strong>
-                                <% end %>
-                            </h3>
-                          </div><!-- /.box-header -->
-                          <div class="box-body no-padding">
-                            <table class="table table-striped">
-                              <tr>
-                                <th>Step</th>
-                                <th>Build Type</th>
-                                <th>Status</th>
-                              </tr>
-                              <%= render @build_step_yesterday %>
-                            </table>
-                          </div><!-- /.box-body -->
-                        </div><!-- /.box -->
-                      </div><!-- /.col -->
-
-                      <div class="col-md-8">
-                        <div class="box">
-                          <div class="box-header">
-                            <h3 class="box-title">Regression Results: 
-                                <% if @qa_suite_yesterday.first.nil? %>
-                                        <div class="overlay">
-                                                <i class="fa fa-refresh fa-spin"></i>
-                                        </div>
-                                <% elsif %>
-                                        <strong><%= @qa_suite_yesterday.first.branch %></strong>
-                                <% end %>
-                            </h3>
-                          </div><!-- /.box-header -->
-                          <div class="box-body no-padding">
-                            <table class="table table-striped">
-                              <tr>
-                                <th style="width: 80px">Suite Name</th>
-                                <th style="width: 40px">Build Type</th>
-                                <th style="width: 60px">Start Time</th>
-                                <th style="width: 60px">End Time</th>
-                                <th style="width: 40px">Status</th>
-                                <th style="width: 20px">Passed</th>
-                                <th style="width: 20px">Failed</th>
-                              </tr>
-                              <%= render @qa_suite_yesterday %>
-                            </table>
-                          </div><!-- /.box-body -->
-                        </div><!-- /.box -->
-                      </div><!-- /.col -->
-                  </div>
+        </div>
+        </div><!-- /row -->
+        <div class="row">
+        <div class=" col-md-5 col-xs-3">
+        </div>
+        <div class="col-md-1 col-xs-3">
+                <form action="/select" accept-charset="UTF-8" data-remote="true" method="post">
+                        <input name="utf8" type="hidden" value="✓">
+                        <input type="submit" name="commit" value="Prev" class="btn btn-block btn-primary btn-lg">
+                </form>
+        </div>
+        <div class="col-md-1 col-xs-3">
+                <form action="/select" accept-charset="UTF-8" data-remote="true" method="post">
+                        <input name="utf8" type="hidden" value="✓">
+                        <input type="submit" name="commit" value="Next" class="btn btn-block btn-primary btn-lg">
+                </form>
+        </div>
+        <div class="col-md-5 col-xs-3">
+        </div>
+        </div>
   </section>
