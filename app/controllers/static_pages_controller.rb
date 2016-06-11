@@ -1,9 +1,9 @@
 class StaticPagesController < ApplicationController
   skip_before_filter  :verify_authenticity_token
   def home
-        user = VirtualUser.find_by(user_session: session.id)
-        if user
-                @qa_suite_today = QaSuite.homepage_qa_suites_today(user.version, user.platform, user.timestamp).all
+        @user = VirtualUser.find_by(user_session: session.id)
+        if @user
+                @qa_suite_today = QaSuite.homepage_qa_suites_today(@user.version, @user.platform, @user.timestamp).all
         else
                 @qa_suite_today = QaSuite.homepage_qa_suites_today('master', 'linux_x86_64_rhel6').all
         end
