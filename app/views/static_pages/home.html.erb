@@ -12,10 +12,9 @@
   <!-- Main Content -->
     <section class="content">
         <div class="row">
-                <div class=" col-md-3 col-xs-3">
-                </div>
-                <div class="form-group col-md-3 col-xs-3">
-                <% ['master', '18.1', '17.2', '17.1'].each do |v| %>
+                <div class="col-md-1"></div>
+                <div class="form-group col-md-1">
+                <% ['master'].each do |v| %>
                   <% if @user.version == v %>
                     <label><%= check_box_tag 'version', v, true, type: 'radio', class: "flat-red" %><%= v %></label>
                   <% else %>
@@ -23,17 +22,28 @@
                   <% end %>
                 <% end %>
                 </div>
-                <div class="form-group col-md-3 col-xs-3">
-                <% ['linux_x86_64_rhel5', 'linux_x86_64_rhel6', 'linux_x86_64_rhel7'].each do |p| %>
+                <div class="form-group col-md-2">
+                <% ['linux_x86_64_rhel5', 'linux_x86_64_rhel6'].each do |p| %>
                   <% if @user.platform == p %>
-                    <label><%= check_box_tag 'platform', p, true, type: 'radio', class: "flat-red" %><%= p.split('_')[-1] %></label>
+                    <label><%= check_box_tag 'platform', p, true, type: 'radio', class: "flat-red" %><%= p.split('_')[-1].upcase %></label>
                   <% else %>
-                    <label><%= check_box_tag 'platform', p, false, type: 'radio', class: "flat-red" %><%= p.split('_')[-1] %></label>
+                    <label><%= check_box_tag 'platform', p, false, type: 'radio', class: "flat-red" %><%= p.split('_')[-1].upcase %></label>
                   <% end %>
                 <% end %>
                 </div>
-                <div class=" col-md-3 col-xs-3">
-                </div>
+                <form action="/select" accept-charset="UTF-8" data-remote="true" method="post">
+                        <div id="timestamp_pull_down_menu" class=" col-md-2" >
+                        <input name="utf8" type="hidden" value="✓">
+                        <select name="select[buildname]" id="select_buildname">
+                        <% 10.times do |n| %>
+                                <% if QaSuite.where("version = ?", @user.version).where("platform = ?", @user.platform).where("suite_name = ?", 'customer')[n].branch == @user.build_branch%>
+                                        <option selected="selected" value="<%= QaSuite.where("version = ?", @user.version).where("platform = ?", @user.platform).where("suite_name = ?", 'customer')[n].branch %>"><%= QaSuite.where("version = ?", @user.version).where("platform = ?", @user.platform).where("suite_name = ?", 'customer')[n].branch %></option>
+                                <% else %>
+                                        <option value="<%= QaSuite.where("version = ?", @user.version).where("platform = ?", @user.platform).where("suite_name = ?", 'customer')[n].branch %>"><%= QaSuite.where("version = ?", @user.version).where("platform = ?", @user.platform).where("suite_name = ?", 'customer')[n].branch %></option>
+                                <% end %>
+                        <% end %>
+                        </select>
+                        </div>
         </div>
         <div class="row">
         <div id="qa_suite_today_table">

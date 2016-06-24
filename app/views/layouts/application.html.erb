@@ -69,7 +69,7 @@
                                                 var isChecked = e.currentTarget.checked;
                                                 if (isChecked == true) {
                                                         $.ajax({
-                                                        dataType: "json",
+                                                        dataType: "select",
                                                         type: "POST",
                                                         url: "select",
                                                         data: { version : e.currentTarget.value }
@@ -84,7 +84,7 @@
                                                 var isChecked = e.currentTarget.checked;
                                                 if (isChecked == true) {
                                                         $.ajax({
-                                                        dataType: "json",
+                                                        dataType: "script",
                                                         type: "POST",
                                                         url: "select",
                                                         data: { platform : e.currentTarget.value }
